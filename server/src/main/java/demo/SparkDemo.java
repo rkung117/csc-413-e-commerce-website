@@ -13,5 +13,7 @@ import org.bson.Document;
 
 public class SparkDemo {
   public static void main(String[] args) {
+    port(1234);
+
   }
 }
