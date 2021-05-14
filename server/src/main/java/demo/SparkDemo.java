@@ -3,18 +3,38 @@ package demo;
 import static spark.Spark.*;
 import static com.mongodb.client.model.Filters.*;
 
-
+import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 
 public class SparkDemo {
+
+  public static List<MessageDto> messageList = new ArrayList<>();
+  public static Gson gson = new Gson();
+
   public static void main(String[] args) {
     port(1234);
 
     webSocket("/ws", WebSocketHandler.class);
+
+    post("/postListing", (req, res) -> {
+      String body = req.body();
+      System.out.println(body);
+      MessageDto newMessage = gson.fromJson(body, MessageDto.class);
+      messageList.add(newMessage);
+
+      BroadcastDto broadcastDto = new BroadcastDto(messageList,
+              WebSocketHandler.getClientCount());
+      WebSocketHandler.broadcast(gson.toJson(broadcastDto));
+
+      return messageList.size();
+
+    });
 
     get("/viewListings", (req, res) -> {
       System.out.println(req.queryMap("name").value());

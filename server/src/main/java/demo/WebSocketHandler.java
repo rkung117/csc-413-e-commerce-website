@@ -33,11 +33,15 @@ public class WebSocketHandler {
   @OnWebSocketConnect
   public void connected(Session session) throws IOException {
     System.out.println("A client has connected");
+    sessionMap.put(session, session);
+    System.out.println("Total Connections: " + sessionMap.keySet().size());
   }
 
   @OnWebSocketClose
   public void closed(Session session, int statusCode, String reason) {
     System.out.println("A client has disconnected");
+    sessionMap.remove(session);
+    System.out.println("Total connections: " + sessionMap.keySet().size());
   }
 
   @OnWebSocketMessage
