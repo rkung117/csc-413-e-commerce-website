@@ -9,6 +9,27 @@ import java.util.concurrent.*;
 @WebSocket
 public class WebSocketHandler {
 
+  //uses multiple threads
+  //user for key
+  static Map<Session, Session> sessionMap = new ConcurrentHashMap<>();
+
+  //send a string to all active clients
+  public static void broadcast(String message) {
+    sessionMap.keySet().forEach(session -> {
+      try {
+        System.out.println("hi");
+        session.getRemote().sendString(message);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    });
+  }
+
+  public static Integer getClientCount() {
+    return sessionMap.keySet().size();
+  }
+
+
   @OnWebSocketConnect
   public void connected(Session session) throws IOException {
     System.out.println("A client has connected");
