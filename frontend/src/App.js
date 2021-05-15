@@ -14,8 +14,8 @@ const App = () => {
     <div>
       <nav>
         <Link to="/"> Home </Link>
-        <Link to="/viewListings">View Listings</Link>
-        <Link to="/postListings">Post Listings</Link>
+        <Link to="/viewListings"> View </Link>
+        <Link to="/postListings"> Post </Link>
       </nav>
       <Switch>
         <Route path="/viewListings">

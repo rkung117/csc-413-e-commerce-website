@@ -1,5 +1,7 @@
+import Axios from 'axios';
 import React from 'react';
 
+// watch week 10 classwork 9 - 90 min mark for sending info to backend
 const PostListings = () => {
     const [email, setEmail] = React.useState('');
     const [title, setTitle] = React.useState('');
@@ -27,7 +29,22 @@ const PostListings = () => {
     };
 
     const handleSubmit = () => {
+        console.log('the title is ' + title);
+        console.log('the description is ' + description);
+        console.log('the price is' + price);
         
+        // sends data in text fields to backend
+        // change post endpoint to whatever it is called in the backend
+        // const body = {
+        //     title : title,
+        //     description : description,
+        //     price : price,
+        // };
+        // Axios.post('/submit-listing', body)
+
+        setTitle('');
+        setDescription('');
+        setPrice('');
     };
 
     return (
