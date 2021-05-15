@@ -1,16 +1,9 @@
 package demo;
 
 import static spark.Spark.*;
-import static com.mongodb.client.model.Filters.*;
-
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.bson.Document;
 
 public class SparkDemo {
 
@@ -37,8 +30,7 @@ public class SparkDemo {
     });
 
     get("/viewListings", (req, res) -> {
-      System.out.println(req.queryMap("name").value());
-      return "Hello " + req.queryMap("name").value();
+      return gson.toJson(messageList);
     });
 
   }
