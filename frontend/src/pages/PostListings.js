@@ -40,12 +40,32 @@ const PostListings = () => {
         //     description : description,
         //     price : price,
         // };
-        // Axios.post('/submit-listing', body)
+        // axios.post('/submit-listing', body)
+        //     .then(fetchListings);
 
         setTitle('');
         setDescription('');
         setPrice('');
     };
+
+    // fetches info from backend
+    // const fetchListings = () => {
+    //     axios.get('/get-listings') // asyc, waits to finish
+    //     .then((res) => {
+    //         // res is what spark server sent back
+    //         console.log(res.data);
+    //         setTitle(res.body.title);
+    //         setDescription(res.body.description);
+    //         setPrice(res.body.price);
+    //         setDescription(res.data.description);
+    //     });
+    // };
+
+    // make it so listings load when the page loads rather than on submit
+    // React.useEffect(() => {
+    //     // Trigger only 1 time
+    //     fetchListings();
+    // }, []);
 
     return (
         <div>
@@ -64,6 +84,11 @@ const PostListings = () => {
             <input value={price} onChange={handlePrice} />
 
             <button onClick={handleSubmit}>Submit Post</button>
+
+            {/* week 10 classwork 9 - 105 min
+            {messageList.map((object, i) => <div key={i}>{object.message}</div>)}
+            maps messageList so we print messages every time we click submit and
+            also has a history of messages */}
         </div>
     );
 };
