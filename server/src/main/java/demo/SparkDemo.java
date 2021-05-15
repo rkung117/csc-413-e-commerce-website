@@ -15,33 +15,40 @@ import java.util.List;
 import org.bson.Document;
 
 public class SparkDemo {
-  static List<MessageDto> messageList = new ArrayList<>();
+  static List<listingDto> emailList = new ArrayList<>();
+  static List<listingDto> titleList = new ArrayList<>();
+  static List<listingDto> descriptionList = new ArrayList<>();
+  static List<listingDto> priceList = new ArrayList<>();
   static Gson gson = new Gson();
 
   public static void main(String[] args) {
     port(1235);
     webSocket("/ws", WebSocketHandler.class);
 
-    // http://localhost:1235/test-endpoint?name=brian
-    get("/test-endpoint", (req, res) -> {
-      System.out.println(req.queryMap("name").value());
-      return "Hello " + req.queryMap("name").value();
-    });
+    // http://localhost:1235/test-endpoint?
+//    get("/test-endpoint", (req, res) -> {
+//      System.out.println(req.queryMap("name").value());
+//      return "Hello " + req.queryMap("name").value();
+//    });
 
-    post("/submit-message", (req, res) -> {
+    post("/submit-listing", (req, res) -> {
       String bodyString = req.body();
       System.out.println(bodyString);
-      MessageDto newMessage = gson.fromJson(bodyString, MessageDto.class);
-      messageList.add(newMessage);
+//      listingDto newEmail = gson.fromJson(bodyString, listingDto.class);
+//      emailList.add(newEmail);
+      listingDto newTitle = gson.fromJson(bodyString, listingDto.class);
+      titleList.add(newTitle);
+//      listingDto newDescription = gson.fromJson(bodyString, listingDto.class);
+//      descriptionList.add(newDescription);
+//      listingDto newPrice = gson.fromJson(bodyString, listingDto.class);
+//      priceList.add(newPrice);
+return  titleList;
 
-
-      BroadcastDto broadCastDto = new BroadcastDto(messageList, WebSocketHandler.getClientCount());
-      WebSocketHandler.broadcast(gson.toJson(broadCastDto));
-      return messageList.size();
     });
 
-    get("/get-messages", (req, res) -> {
-      return gson.toJson(messageList);
+    get("/get-listings", (req, res) -> {
+      return gson.toJson(titleList);
+
     });
 
 
