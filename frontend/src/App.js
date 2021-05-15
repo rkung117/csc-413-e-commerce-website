@@ -2,9 +2,11 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import UserPage from './pages/UserPage';
+import PostListings from './pages/postListings';
+import ViewListings from './pages/viewListings';
+// import Login from './pages/Login';
+// import Signup from './pages/Signup';
+// import UserPage from './pages/UserPage';
 
 const App = () => {
   // todo, add more pages!
@@ -12,8 +14,16 @@ const App = () => {
     <div>
       <nav>
         <Link to="/"> Home </Link>
+        <Link to="/viewListings">View Listings</Link>
+        <Link to="/postListings">Post Listings</Link>
       </nav>
       <Switch>
+        <Route path="/viewListings">
+          <ViewListings />
+        </Route>
+        <Route path="/postListings">
+          <PostListings />
+        </Route>
         <Route path="/">
           <Home />
         </Route>
