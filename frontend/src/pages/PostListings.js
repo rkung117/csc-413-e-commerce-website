@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 // watch week 10 classwork 9 - 90 min mark for sending info to backend
-const PostListings = () => {
+const PostListings = ({ ws }) => { // props incoming in the function
     // text in the box
     const [message, setMessage] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -39,6 +39,14 @@ const PostListings = () => {
     React.useEffect(() => {
         // Trigger only 1 time
         fetchMessages();
+
+        // listen for ws here
+        ws.addEventListener('message', (message) => {
+            console.log(message);
+            const parsedData = JSON.parse(message.data);
+            console.log(parsedData);
+            setMessageList(parsedData.messages); // triggers the refresh
+        });
     }, []);
     
     return(

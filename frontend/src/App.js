@@ -8,7 +8,8 @@ import ViewListings from './pages/ViewListings';
 // import Signup from './pages/Signup';
 // import UserPage from './pages/UserPage';
 
-const App = () => {
+// {} means prop values are being passed in from parent element
+const App = ({ ws }) => {
   // todo, add more pages!
   return (
     <div>
@@ -19,10 +20,10 @@ const App = () => {
       </nav>
       <Switch>
         <Route path="/viewListings">
-          <ViewListings />
+          <ViewListings ws={ws} />
         </Route>
         <Route path="/postListings">
-          <PostListings />
+          <PostListings ws={ws} />
         </Route>
         <Route path="/">
           <Home />
