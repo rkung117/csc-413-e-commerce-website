@@ -11,7 +11,7 @@ public class SparkDemo {
   public static Gson gson = new Gson();
 
   public static void main(String[] args) {
-    port(1234);
+    port(1235);
 
     webSocket("/ws", WebSocketHandler.class);
 
