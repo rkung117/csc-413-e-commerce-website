@@ -8,7 +8,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
 import java.util.ArrayList;
-import org.bson.Document;
 
 public class SparkDemo {
 
