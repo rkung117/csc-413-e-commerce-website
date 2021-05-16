@@ -5,11 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
+// websocket connection
 const ws = new WebSocket('ws://localhost:1235/ws');
 
 ReactDOM.render(
 <BrowserRouter>
-    <App ws={ws}/>
+    <App ws={ws} />
 </BrowserRouter>, 
 document.getElementById('root')
 );
