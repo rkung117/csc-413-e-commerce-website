@@ -15,7 +15,7 @@ public class SparkDemo {
 
     webSocket("/ws", WebSocketHandler.class);
 
-    post("/postListing", (req, res) -> {
+    post("/submit-listing", (req, res) -> {
       String body = req.body();
       System.out.println(body);
       MessageDto newMessage = gson.fromJson(body, MessageDto.class);
@@ -29,7 +29,7 @@ public class SparkDemo {
 
     });
 
-    get("/viewListings", (req, res) -> {
+    get("/get-listings", (req, res) -> {
       return gson.toJson(messageList);
     });
 

@@ -17,7 +17,6 @@ public class WebSocketHandler {
   public static void broadcast(String message) {
     sessionMap.keySet().forEach(session -> {
       try {
-        System.out.println("hi");
         session.getRemote().sendString(message);
       } catch (IOException e) {
         e.printStackTrace();
