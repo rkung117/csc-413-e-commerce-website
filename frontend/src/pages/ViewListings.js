@@ -26,6 +26,7 @@ const ViewListings = ({ ws }) => {
             // res is what the spark server sent back
             console.log(res.data);
             setMessageList(res.data); // save for using on the page
+            
         });
     };
 

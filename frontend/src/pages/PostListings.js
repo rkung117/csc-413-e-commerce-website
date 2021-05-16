@@ -18,12 +18,17 @@ const PostListings = ({ ws }) => { // props incoming in the function
     };
 
     const handleSubmit = () => {
+        console.log(email);
         console.log(message);
         const body = {
+            email : email,
             message : message,
         };
         axios.post('/submit-listing', body)
             .then(fetchMessages);
+            // var email = body.email;
+            // var listing = body.message;
+        setEmail('');
         setMessage('');
     };
 
@@ -41,11 +46,11 @@ const PostListings = ({ ws }) => { // props incoming in the function
         fetchMessages();
 
         // listen for ws here
-        ws.addEventListener('message', (message) => {
+        ws.addEventListener('email, message', (email, message) => {
             console.log(message);
-            const parsedData = JSON.parse(message.data);
+            const parsedData = JSON.parse(email.data, message.data);
             console.log(parsedData);
-            setMessageList(parsedData.messages); // triggers the refresh
+            setMessageList(parsedData.emails, parsedData.messages); // triggers the refresh
         });
     }, []);
     
@@ -61,6 +66,7 @@ const PostListings = ({ ws }) => { // props incoming in the function
             <button onClick={handleSubmit}>Submit</button>
 
             <div>
+                {messageList.map((object, i) => <div key={i}>{object.email}</div>)}
                 {messageList.map((object, i) => <div key={i}>{object.message}</div>)}
             </div>
         </div>
