@@ -4,32 +4,43 @@ import React from 'react';
 // watch week 10 classwork 9 - 90 min mark for sending info to backend
 const PostListings = ({ ws }) => { // props incoming in the function
     // text in the box
-    const [message, setMessage] = React.useState('');
     const [email, setEmail] = React.useState('');
+    const [product, setProduct] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [price, setPrice] = React.useState('');
+    
     // list of messages
     const [messageList, setMessageList] = React.useState([]);
-
-    const handleMessageUpdate = (e) => {
-        setMessage(e.target.value);
-    };
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
     };
 
+    const handleProduct = (e) => {
+        setProduct(e.target.value);
+    };
+
+    const handleDescription = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const handlePrice = (e) => {
+        setPrice(e.target.value);
+    };
+
     const handleSubmit = () => {
-        console.log(email);
-        console.log(message);
         const body = {
             email : email,
-            message : message,
+            product : product,
+            description : description,
+            price : price,
         };
         axios.post('/submit-listing', body)
             .then(fetchMessages);
-            // var email = body.email;
-            // var listing = body.message;
         setEmail('');
-        setMessage('');
+        setProduct('');
+        setDescription('');
+        setPrice('');
     };
 
     const fetchMessages = () => {
@@ -46,11 +57,13 @@ const PostListings = ({ ws }) => { // props incoming in the function
         fetchMessages();
 
         // listen for ws here
-        ws.addEventListener('email, message', (email, message) => {
-            console.log(message);
-            const parsedData = JSON.parse(email.data, message.data);
+        ws.addEventListener('email, product, description, price', 
+            (email, product, description, price) => {
+            const parsedData = JSON.parse(email.data, product.data,
+                description.data, price.data);
             console.log(parsedData);
-            setMessageList(parsedData.emails, parsedData.messages); // triggers the refresh
+            setMessageList(parsedData.emails, parsedData.product,
+                parsedData.description, parsedData.price); // triggers the refresh
         });
     }, []);
     
@@ -58,16 +71,28 @@ const PostListings = ({ ws }) => { // props incoming in the function
         <div>
             <h1>Post Listings</h1>
 
-            <h2>Enter Email</h2>
-            <input value={email} onChange={handleEmail} />
+            <form>
+                <h2>Email</h2>
+                <input value={email} type="email" onChange={handleEmail} required/>
             
-            <h2>Listings</h2>
-            <input value={message} onChange={handleMessageUpdate}/>
-            <button onClick={handleSubmit}>Submit</button>
+                <h2>Product</h2>
+                <input value={product} onChange={handleProduct}/>
+
+                <h2>Description</h2>
+                <input value={description} onChange={handleDescription}/>
+
+                <h2>Price</h2>
+                <input value={price} onChange={handlePrice}/>
+
+                <button onClick={handleSubmit}>Submit</button>
+            </form>
+            
 
             <div>
-                {messageList.map((object, i) => <div key={i}>{object.email}</div>)}
-                {messageList.map((object, i) => <div key={i}>{object.message}</div>)}
+                {messageList.map((object, i) => 
+                <div key={i}>
+                    {object.email} {object.product} {object.description} {object.price}
+                </div>)}
             </div>
         </div>
     );

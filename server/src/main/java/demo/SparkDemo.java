@@ -45,9 +45,10 @@ public class SparkDemo {
 
       Document doc = new Document("name", "ViewListings")
         .append("email", newListing.email)
-        .append("message", newListing.message);
-//        .append("title", new Document("x", 203).append("y", 102))
-//        .append("price", price);
+        .append("product", newListing.product)
+        .append("description", newListing.description)
+        .append("price", newListing.price);
+
       // insert document into collection
       myCollection.insertOne(doc);
 
