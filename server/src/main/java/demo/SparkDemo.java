@@ -39,7 +39,7 @@ public class SparkDemo {
 
     post("/submit-listing", (req, res) -> {
       String bodyString = req.body();
-      System.out.println("THIS " + bodyString);
+      System.out.println(bodyString);
       MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
       listingList.add(newListing);
 
@@ -62,6 +62,16 @@ public class SparkDemo {
     get("/get-listing", (req, res) -> {
       return gson.toJson(listingList);
     });
+
+    delete("/delete-listing", (req, res) -> {
+      String bodyString = req.body();
+      System.out.println(bodyString);
+      MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
+      listingList.remove(newListing);
+
+      return listingList.size();
+    });
+
   }
 
 

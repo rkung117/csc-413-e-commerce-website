@@ -27,15 +27,15 @@ const ViewListings = ({ ws }) => {
         setPrice(e.target.value);
     };
 
-    const handleSubmit = () => {
+    const handleDelete = () => {
         const body = {
             email : email,
             product : product,
             description : description,
             price : price,
         };
-        axios.post('/submit-listing', body)
-            .then(fetchMessages);
+        axios.delete('/delete-listing', body)
+            // .then(fetchMessages);
         setEmail('');
         setProduct('');
         setDescription('');
@@ -51,10 +51,14 @@ const ViewListings = ({ ws }) => {
         });
     };
 
+    const deleteMessages = () => {
+        axios.delete('/delete-listing');
+    }
+
     React.useEffect(() => {
         // Trigger only 1 time
         fetchMessages();
-
+        deleteMessages();
         // listen for ws here
         ws.addEventListener('email, product, description, price', 
             (email, product, description, price) => {
@@ -79,7 +83,7 @@ const ViewListings = ({ ws }) => {
                     Product: {object.product}<br></br> 
                     Description: {object.description}<br></br> 
                     Price: {object.price}<br></br>
-                    <button>Delete Listing</button><br></br><br></br> 
+                    <button onClick={handleDelete}>Delete Listing</button><br></br><br></br> 
                 </div>)}      
             </div>
                 
