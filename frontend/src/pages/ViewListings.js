@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from'axios';
 
+// how do i add a way for people to submit inquiry on listings?
 const ViewListings = ({ ws }) => { 
     
     const [message, setMessage] = React.useState('');
@@ -45,8 +46,8 @@ const ViewListings = ({ ws }) => {
     return (
         <div>
             <h1>View Listings</h1>
-            {/* <input value={message} onChange={handleMessageUpdate}/>
-            <button onClick={handleSubmit}>Submit</button> */}
+            <input value={message} onChange={handleMessageUpdate}/>
+            <button onClick={handleSubmit}>Submit</button>
 
             <div>
                 {messageList.map((object, i) => <div key={i}>{object.message}</div>)}

@@ -68,10 +68,7 @@ const PostListings = ({ ws }) => { // props incoming in the function
         .then((res) => {
             // res is what the spark server sent back
             console.log(res.data);
-            setMessageList(res.data); // save for using on the page
-            setTypeList(res.data);
-            setPriceList(res.data);
-            setTitleList(res.data);
+            setMessageList(res.data); // save for using on the page           
         });
     };
 
@@ -85,27 +82,6 @@ const PostListings = ({ ws }) => { // props incoming in the function
             const parsedMessageData = JSON.parse(message.data);
             console.log(parsedMessageData);
             setMessageList(parsedMessageData.messages); // triggers the refresh
-        });
-
-        ws.addEventListener('type', (type) => {
-            console.log(type);
-            const parsedTypeData = JSON.parse(type.data);
-            console.log(parsedTypeData);
-            setTypeList(parsedTypeData.type); // triggers the refresh
-        });
-
-        ws.addEventListener('price', (price) => {
-            console.log(price);
-            const parsedPriceData = JSON.parse(price.data);
-            console.log(parsedPriceData);
-            setPriceList(parsedPriceData.price); // triggers the refresh
-        });
-
-        ws.addEventListener('title', (title) => {
-            console.log(title);
-            const parsedTitleData = JSON.parse(title.data);
-            console.log(parsedTitleData);
-            setTitleList(parsedTitleData.title); // triggers the refresh
         });
     }, []);
     
@@ -125,7 +101,14 @@ const PostListings = ({ ws }) => { // props incoming in the function
             <button onClick={handleSubmit}>Submit</button>
 
             <div>
-                {messageList.map((object, i) => <div key={i}>{object.message}</div>)}
+                {messageList.map((object, i) => 
+                <div key={i}>
+                    Description: {object.message} <br></br>
+                    Type: {object.type} <br></br>
+                    Price: {object.price} <br></br>
+                    Title: {object.title} <br></br>
+                    <br></br>
+                </div>)}
             </div>
         </div>
     );

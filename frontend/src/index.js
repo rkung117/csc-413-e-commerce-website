@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 // websocket connection
 const ws = new WebSocket('ws://localhost:1235/ws');
 
-ReactDOM.render(
+ReactDOM.render(    
 <BrowserRouter>
     <App ws={ws} />
 </BrowserRouter>, 
