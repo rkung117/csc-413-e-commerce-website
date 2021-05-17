@@ -26,17 +26,17 @@ public class MongoConnection {
         // open connection
         mongoClient = new MongoClient("localhost", 27017);
         // get ref to database
-        database = mongoClient.getDatabase("MyDatabase");
+        database = mongoClient.getDatabase("NewDatabase");
         database = database.withCodecRegistry(pojoCodecRegistry);
-        MongoCollection<Document> myColection = database.getCollection("myCollection");
+        MongoCollection<Document> myCollection = database.getCollection("myCollection");
 
-        Document doc = new Document("name", "ViewListings")
-                .append("description", "database")
-                .append("type", 1)
-                .append("title", new Document("x", 203).append("y", 102))
-                //.append("price", price);
-        // insert document into collection
-        myColection.insertOne(doc);
+//        Document doc = new Document("name", "ViewListings")
+//                .append("description", "database")
+//                .append("type", 1)
+//                .append("title", new Document("x", 203).append("y", 102));
+//        //.append("price", price);
+//        // insert document into collection
+//        myCollection.insertOne(doc);
     }
 
     public MongoCollection getCollection(String name, Class clazz) {
