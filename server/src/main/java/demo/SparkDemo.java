@@ -65,17 +65,18 @@ public class SparkDemo {
       return gson.toJson(docs);
     });
 
-    delete("/delete-listing", (req, res) -> {
-      String bodyString = req.body();
-      System.out.println(bodyString);
+    post("/delete-listing", (req, res) -> {
+      String bodyString = res.body();
+      System.out.println("THIS " + bodyString);
       MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
 //      listingList.remove(newListing);
 
-      Document doc = new Document("name", "ViewListings")
-              .append("email", newListing.email)
-              .append("product", newListing.product)
-              .append("description", newListing.description)
-              .append("price", newListing.price);
+//      Document doc = new Document("name", "ViewListings")
+//              .append("email", newListing.email)
+//              .append("product", newListing.product)
+//              .append("description", newListing.description)
+//              .append("price", newListing.price);
+      Document doc = myCollection.find(eq("email", newListing.email)).first();
 
       // insert document into collection
       myCollection.deleteOne(doc);
