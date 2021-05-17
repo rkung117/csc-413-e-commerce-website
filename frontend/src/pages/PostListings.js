@@ -69,7 +69,7 @@ const PostListings = ({ ws }) => { // props incoming in the function
     
     return(
         <div>
-            <h1>Post Listings</h1>
+            <h1>Post Listing</h1>
 
             <form id="postForm">
                 <h3 id="email">Email</h3>
