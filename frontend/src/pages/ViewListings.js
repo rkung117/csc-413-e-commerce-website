@@ -51,7 +51,7 @@ const ViewListings = ({ ws }) => {
             description : description,
             price : price,
         };
-        axios.delete('/delete-listing', body)
+        axios.delete('/delete-listing', body.deleteOne())
         // deleteMessages();
     };
 

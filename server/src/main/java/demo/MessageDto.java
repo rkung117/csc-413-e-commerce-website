@@ -6,6 +6,13 @@ public class MessageDto {
     public final String description;
     public final String price;
 
+    public MessageDto(unique_id, String email, String product, String description, String price){
+        this.email = email;
+        this.product = product;
+        this.description = description;
+        this.price = price;
+    }
+
     public MessageDto(String email, String product, String description, String price){
         this.email = email;
         this.product = product;
