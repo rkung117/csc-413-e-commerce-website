@@ -72,19 +72,19 @@ const PostListings = ({ ws }) => { // props incoming in the function
             <h1>Post Listings</h1>
 
             <form id="postForm">
-                <h2>Email</h2>
-                <input value={email} type="email" onChange={handleEmail} required/>
+                <h3 id="email">Email</h3>
+                <input required id="postEmail" value={email} type="email" onChange={handleEmail}/>
             
-                <h2>Product</h2>
-                <input value={product} onChange={handleProduct}/>
+                <h3 id="product">Product</h3>
+                <input required id="postProduct" value={product} onChange={handleProduct}/>
 
-                <h2>Description</h2>
-                <input value={description} onChange={handleDescription}/>
+                <h3 id="description">Description</h3>
+                <textarea required id="postDescription" value={description} onChange={handleDescription}/>
 
-                <h2>Price</h2>
-                <input value={price} onChange={handlePrice}/>
+                <h3 id="price">Price</h3>
+                <input required id="postPrice" value={price} type="number" onChange={handlePrice}/>
 
-                <button onClick={handleSubmit}>Submit</button>
+                <button id="postSubmit" type="submit" onClick={handleSubmit} >Submit Listing</button>
             </form>
             
 

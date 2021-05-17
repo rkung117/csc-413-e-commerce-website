@@ -2,6 +2,12 @@ h1{
     text-align: center;
 }
 
+div{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 #image {
     background-image: url('logo512.png');
     justify-self: center;
@@ -10,10 +16,76 @@ h1{
     height: 500px;
 }
 
+#email {
+    grid-area: email;
+}
+
+#postEmail {
+    grid-area: postEmail;
+}
+
+#product {
+    grid-area: product;
+}
+
+#postProduct {
+    grid-area: postProduct;
+}
+
+#description {
+    grid-area: description;
+    align-self: center;
+}
+
+#postDescription {
+    grid-area: postDescription;
+    resize: none;
+}
+
+#price {
+    grid-area: price;
+}
+
+#postPrice {
+    grid-area: postPrice;
+}
+
+#postSubmit {
+    grid-area: postSubmit;
+    justify-self: center;
+    width: 300px;
+}
+
 #postForm {
-    align-content: center;
-    justify-items: center;
-    border-style: ridge;
-    border-color: black;
+    display: grid;
+    margin: auto;
+    border: ridge;
     max-width: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    box-shadow: 10px 10px 25px black;
+    grid-template-rows: .5fr 1fr 2fr 1fr 1fr;
+    grid-template-columns: 4fr 5fr;
+    gap: .25em;
+    grid-template-areas: 
+    "email postEmail"
+    "product postProduct"
+    "description postDescription"
+    "price postPrice" 
+    "postSubmit postSubmit";
+}
+
+.listing {
+    display: grid;
+    margin: auto;
+    border: ridge;
+    max-width: 500px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    box-shadow: 10px 10px 25px black;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    gap: .25em;
 }

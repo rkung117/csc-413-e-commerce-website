@@ -51,16 +51,6 @@ const ViewListings = ({ ws }) => {
     // };
 
     const handleDelete = () => {
-        // const body = {
-        //     // email : email,
-        //     // product : product,
-        //     // description : description,
-        //     // price : price,
-        //     email : email,
-        //     product : product,
-        //     description : description,
-        //     price : price
-        // };
         axios.post('/delete-listing', {
             email : email,
             product : product,
@@ -96,7 +86,7 @@ const ViewListings = ({ ws }) => {
 
             <div>
                 {messageList.map((object, i) => 
-                <div value={toDelete} key={i}>
+                <div class="listing" value={toDelete} key={i}>
                     <section value={email} onChange={handleToDelete}>Email: {object.email}<br></br> </section>
                     <section value={product} onChange={handleToDelete}>Product: {object.product}<br></br> </section>
                     <section value={description} onChange={handleToDelete}>Description: {object.description}<br></br> </section>
