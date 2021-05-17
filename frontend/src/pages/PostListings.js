@@ -88,12 +88,12 @@ const PostListings = ({ ws }) => { // props incoming in the function
             </form>
             
 
-            <div>
+            {/* <div>
                 {messageList.map((object, i) => 
                 <div key={i}>
                     {object.email} {object.product} {object.description} {object.price}
                 </div>)}
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -2,22 +2,44 @@ import React from 'react';
 import axios from'axios';
 
 const ViewListings = ({ ws }) => { 
+    // text in the box
+    const [email, setEmail] = React.useState('');
+    const [product, setProduct] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [price, setPrice] = React.useState('');
     
-    const [message, setMessage] = React.useState('');
+    // list of messages
     const [messageList, setMessageList] = React.useState([]);
 
-    const handleMessageUpdate = (e) => {
-        setMessage(e.target.value);
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
     };
-    
+
+    const handleProduct = (e) => {
+        setProduct(e.target.value);
+    };
+
+    const handleDescription = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const handlePrice = (e) => {
+        setPrice(e.target.value);
+    };
+
     const handleSubmit = () => {
-        console.log(message);
         const body = {
-            message : message,
+            email : email,
+            product : product,
+            description : description,
+            price : price,
         };
         axios.post('/submit-listing', body)
             .then(fetchMessages);
-        setMessage('');
+        setEmail('');
+        setProduct('');
+        setDescription('');
+        setPrice('');
     };
 
     const fetchMessages = () => {
@@ -26,7 +48,6 @@ const ViewListings = ({ ws }) => {
             // res is what the spark server sent back
             console.log(res.data);
             setMessageList(res.data); // save for using on the page
-            
         });
     };
 
@@ -35,11 +56,13 @@ const ViewListings = ({ ws }) => {
         fetchMessages();
 
         // listen for ws here
-        ws.addEventListener('message', (message) => {
-            console.log(message);
-            const parsedData = JSON.parse(message.data);
+        ws.addEventListener('email, product, description, price', 
+            (email, product, description, price) => {
+            const parsedData = JSON.parse(email.data, product.data,
+                description.data, price.data);
             console.log(parsedData);
-            setMessageList(parsedData.messages); // triggers the refresh
+            setMessageList(parsedData.emails, parsedData.product,
+                parsedData.description, parsedData.price); // triggers the refresh
         });
     }, []);
 
@@ -50,8 +73,16 @@ const ViewListings = ({ ws }) => {
             <button onClick={handleSubmit}>Submit</button> */}
 
             <div>
-                {messageList.map((object, i) => <div key={i}>{object.message}</div>)}
-            </div>       
+                {messageList.map((object, i) => 
+                <div key={i}>
+                    Email: {object.email}<br></br> 
+                    Product: {object.product}<br></br> 
+                    Description: {object.description}<br></br> 
+                    Price: {object.price}<br></br>
+                    <button>Delete Listing</button><br></br><br></br> 
+                </div>)}      
+            </div>
+                
         </div>
     );
 };
