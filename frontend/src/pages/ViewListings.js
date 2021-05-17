@@ -7,7 +7,6 @@ const ViewListings = ({ ws }) => {
     const [product, setProduct] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [price, setPrice] = React.useState('');
-    const [toDelete, setToDelete] = React.useState('');
     
     // list of messages
     const [messageList, setMessageList] = React.useState([]);
@@ -28,14 +27,6 @@ const ViewListings = ({ ws }) => {
         setPrice(e.target.value);
     };
 
-    const handleToDelete = (e) => {
-        setEmail(e.target.value.email);
-        setProduct(e.target.value.product);
-        setDescription(e.target.value.description);
-        setPrice(e.target.value.price);
-        setToDelete(e.target.value);
-    }
-
     const fetchMessages = () => {
         axios.get('/get-listing') //asyc
         .then((res) => {
@@ -45,10 +36,10 @@ const ViewListings = ({ ws }) => {
         });
     };
 
-    // const deleteMessages = () => {
-    //     axios.delete('/delete-listing');
+    const deleteMessages = () => {
+        axios.post('/delete-listing');
 
-    // };
+    };
 
     const handleDelete = () => {
         axios.post('/delete-listing', {
@@ -57,15 +48,13 @@ const ViewListings = ({ ws }) => {
             description : description,
             price : price
         })
-        .then(fetchMessages);
-        // deleteMessages();
-        // fetchMessages();
+        .then(deleteMessages);
     };
 
     React.useEffect(() => {
         // Trigger only 1 time
         fetchMessages();
-        // deleteMessages();
+        deleteMessages();
 
         // listen for ws here
         ws.addEventListener('email, product, description, price', 
@@ -86,12 +75,12 @@ const ViewListings = ({ ws }) => {
 
             <div>
                 {messageList.map((object, i) => 
-                <div class="listing" value={toDelete} key={i}>
-                    <section value={email} onChange={handleToDelete}>Email: {object.email}<br></br> </section>
-                    <section value={product} onChange={handleToDelete}>Product: {object.product}<br></br> </section>
-                    <section value={description} onChange={handleToDelete}>Description: {object.description}<br></br> </section>
-                    <section value={price} onChange={handleToDelete}>Price: {object.price}<br></br></section>
-                    <button onClick={handleDelete}>Delete Listing</button><br></br><br></br> 
+                <div class="listing" key={i}>
+                    <section value={email}>Email: {object.email}</section>
+                    <section value={product}>Product: {object.product}</section>
+                    <section value={description}>Description: {object.description}</section>
+                    <section value={price}>Price: ${object.price}</section>
+                    <button id="deleteButton" onClick={handleDelete}>Delete Listing</button>
                 </div>)}      
             </div>
                 

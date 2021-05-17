@@ -81,11 +81,17 @@ div{
     margin: auto;
     border: ridge;
     max-width: 500px;
-    margin-top: 10px;
+    margin-bottom: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
     box-shadow: 10px 10px 25px black;
     grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
     gap: .25em;
+}
+
+#deleteButton {
+    justify-self: center;
+    width: 250px;
+    border-radius: 3px;
 }

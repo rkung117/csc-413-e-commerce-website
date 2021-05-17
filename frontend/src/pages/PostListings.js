@@ -84,7 +84,7 @@ const PostListings = ({ ws }) => { // props incoming in the function
                 <h3 id="price">Price</h3>
                 <input required id="postPrice" value={price} type="number" onChange={handlePrice}/>
 
-                <button id="postSubmit" type="submit" onClick={handleSubmit} >Submit Listing</button>
+                <button id="postSubmit" type="submit" onClick={handleSubmit}>Submit Listing</button>
             </form>
             
 
