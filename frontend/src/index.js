@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
-const ws = new WebSocket('ws://localhost:1234/ws');
+const ws = new WebSocket('ws://localhost:1235/ws');
 
 ReactDOM.render(
 <BrowserRouter>

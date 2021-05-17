@@ -19,16 +19,16 @@ public class MongoConnection {
 
     // boilerplate connection, don't touch this
     public MongoConnection(){
-        PojoCodecProvider provider = PojoCodecProvider.builder().
-                conventions(Arrays.asList(Conventions.ANNOTATION_CONVENTION)).automatic(true).build();
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
-                fromProviders(provider));
-        // open connection
-        mongoClient = new MongoClient("localhost", 27017);
-        // get ref to database
-        database = mongoClient.getDatabase("NewDatabase");
-        database = database.withCodecRegistry(pojoCodecRegistry);
-        MongoCollection<Document> myCollection = database.getCollection("myCollection");
+//        PojoCodecProvider provider = PojoCodecProvider.builder().
+//                conventions(Arrays.asList(Conventions.ANNOTATION_CONVENTION)).automatic(true).build();
+//        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
+//                fromProviders(provider));
+//        // open connection
+//        mongoClient = new MongoClient("localhost", 27017);
+//        // get ref to database
+//        database = mongoClient.getDatabase("NewDatabase");
+//        database = database.withCodecRegistry(pojoCodecRegistry);
+//        MongoCollection<Document> myCollection = database.getCollection("myCollection");
 
 //        Document doc = new Document("name", "ViewListings")
 //                .append("description", "database")
