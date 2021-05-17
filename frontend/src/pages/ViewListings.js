@@ -11,20 +11,37 @@ const ViewListings = ({ ws }) => {
     // list of messages
     const [messageList, setMessageList] = React.useState([]);
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
+    // const handleEmail = (e) => {
+    //     setEmail(e.target.value);
+    // };
+
+    // const handleProduct = (e) => {
+    //     setProduct(e.target.value);
+    // };
+
+    // const handleDescription = (e) => {
+    //     setDescription(e.target.value);
+    // };
+
+    // const handlePrice = (e) => {
+    //     setPrice(e.target.value);
+    // };
+
+    const fetchMessages = () => {
+        axios.get('/get-listing') //asyc
+        .then((res) => {
+            // res is what the spark server sent back
+            console.log(res.data);
+            setMessageList(res.data) // save for using on the page
+        });
     };
 
-    const handleProduct = (e) => {
-        setProduct(e.target.value);
-    };
-
-    const handleDescription = (e) => {
-        setDescription(e.target.value);
-    };
-
-    const handlePrice = (e) => {
-        setPrice(e.target.value);
+    const deleteMessages = () => {
+        axios.delete('/delete-listing')
+        // .then((res) => {
+        //     console.log(res.data);
+        //     setMessageList(res.data)
+        // });
     };
 
     const handleDelete = () => {
@@ -35,30 +52,14 @@ const ViewListings = ({ ws }) => {
             price : price,
         };
         axios.delete('/delete-listing', body)
-            // .then(fetchMessages);
-        setEmail('');
-        setProduct('');
-        setDescription('');
-        setPrice('');
+        // deleteMessages();
     };
-
-    const fetchMessages = () => {
-        axios.get('/get-listing') //asyc
-        .then((res) => {
-            // res is what the spark server sent back
-            console.log(res.data);
-            setMessageList(res.data); // save for using on the page
-        });
-    };
-
-    const deleteMessages = () => {
-        axios.delete('/delete-listing');
-    }
 
     React.useEffect(() => {
         // Trigger only 1 time
         fetchMessages();
         deleteMessages();
+
         // listen for ws here
         ws.addEventListener('email, product, description, price', 
             (email, product, description, price) => {

@@ -13,6 +13,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.Conventions;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
+import javax.print.Doc;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -60,14 +61,28 @@ public class SparkDemo {
     });
 
     get("/get-listing", (req, res) -> {
-      return gson.toJson(listingList);
+      List<Document> docs = myCollection.find().limit(100).into(new ArrayList<Document>());
+      return gson.toJson(docs);
     });
 
     delete("/delete-listing", (req, res) -> {
       String bodyString = req.body();
       System.out.println(bodyString);
       MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
-      listingList.remove(newListing);
+//      listingList.remove(newListing);
+
+      Document doc = new Document("name", "ViewListings")
+              .append("email", newListing.email)
+              .append("product", newListing.product)
+              .append("description", newListing.description)
+              .append("price", newListing.price);
+
+      // insert document into collection
+      myCollection.deleteOne(doc);
+
+      BroadcastDto broadcastDto = new BroadcastDto(listingList,
+              WebSocketHandler.getClientCount());
+      WebSocketHandler.broadcast((gson.toJson(broadcastDto)));
 
       return listingList.size();
     });
