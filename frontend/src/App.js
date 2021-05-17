@@ -13,10 +13,11 @@ const App = ({ ws }) => {
   // todo, add more pages!
   return (
     <div>
-      <nav>
-        <Link to="/"> Home </Link>
-        <Link to="/viewListings"> View </Link>
-        <Link to="/postListings"> Post </Link>
+      <nav id="navbar">
+        <Link class="link" to="/"> Home </Link>
+        <Link class="link" to="/postListings"> Post </Link>
+        <Link class="link" to="/viewListings"> View </Link>
+        
       </nav>
       <Switch>
         <Route path="/viewListings">

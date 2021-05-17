@@ -51,3 +51,25 @@
 .note-content{
   flex-grow: 2;
 }
+
+#navbar{
+  border: black 2px unset;
+  text-align: center;
+  padding-top: 10px;
+  height: 40px;
+  box-shadow: 10px 10px 20px black;
+}
+
+.link {
+  color: #000;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 750;
+  word-spacing: 25px;
+}
+
+.link:hover {
+  color: red;
+  transition: .25s ease-in;
+  font-size: 25.5px;
+}

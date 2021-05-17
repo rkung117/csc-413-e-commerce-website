@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+}
+
+#image {
+    background-image: url('logo512.png');
+    justify-self: center;
+    background-position: center;
+    width: auto;
+    height: 500px;
+}
+
+#postForm {
+    align-content: center;
+    justify-items: center;
+    border-style: ridge;
+    border-color: black;
+    max-width: 500px;
+}

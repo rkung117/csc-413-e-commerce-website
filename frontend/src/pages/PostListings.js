@@ -71,7 +71,7 @@ const PostListings = ({ ws }) => { // props incoming in the function
         <div>
             <h1>Post Listings</h1>
 
-            <form>
+            <form id="postForm">
                 <h2>Email</h2>
                 <input value={email} type="email" onChange={handleEmail} required/>
             

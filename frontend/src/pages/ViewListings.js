@@ -29,12 +29,11 @@ const ViewListings = ({ ws }) => {
     };
 
     const handleToDelete = (e) => {
-        setEmail(e.target.email);
-        console.log(e.target.email);
-        setProduct(e.target.product);
-        setDescription(e.target.description);
-        setPrice(e.target.price);
-        // setToDelete(e.target.value);
+        setEmail(e.target.value.email);
+        setProduct(e.target.value.product);
+        setDescription(e.target.value.description);
+        setPrice(e.target.value.price);
+        setToDelete(e.target.value);
     }
 
     const fetchMessages = () => {
@@ -52,18 +51,25 @@ const ViewListings = ({ ws }) => {
     // };
 
     const handleDelete = () => {
-        const body = {
-            // email : email,
-            // product : product,
-            // description : description,
-            // price : price,
+        // const body = {
+        //     // email : email,
+        //     // product : product,
+        //     // description : description,
+        //     // price : price,
+        //     email : email,
+        //     product : product,
+        //     description : description,
+        //     price : price
+        // };
+        axios.post('/delete-listing', {
             email : email,
             product : product,
             description : description,
             price : price
-        };
-        axios.post('/delete-listing', body)
+        })
+        .then(fetchMessages);
         // deleteMessages();
+        // fetchMessages();
     };
 
     React.useEffect(() => {

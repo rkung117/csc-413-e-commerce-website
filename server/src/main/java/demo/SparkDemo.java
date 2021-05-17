@@ -69,13 +69,7 @@ public class SparkDemo {
       String bodyString = res.body();
       System.out.println("THIS " + bodyString);
       MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
-//      listingList.remove(newListing);
 
-//      Document doc = new Document("name", "ViewListings")
-//              .append("email", newListing.email)
-//              .append("product", newListing.product)
-//              .append("description", newListing.description)
-//              .append("price", newListing.price);
       Document doc = myCollection.find(eq("email", newListing.email)).first();
 
       // insert document into collection
@@ -85,6 +79,7 @@ public class SparkDemo {
               WebSocketHandler.getClientCount());
       WebSocketHandler.broadcast((gson.toJson(broadcastDto)));
 
+      listingList.remove(newListing);
       return listingList.size();
     });
 
