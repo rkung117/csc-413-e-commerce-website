@@ -69,7 +69,7 @@
 }
 
 .link:hover {
-  color: red;
+  color: blue;
   transition: .25s ease-in;
   font-size: 25.5px;
 }

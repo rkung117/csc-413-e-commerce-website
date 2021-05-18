@@ -56,6 +56,14 @@ div{
     width: 250px;
     margin-top: 15px;
     margin-bottom: 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#postSubmit:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
 }
 
 #postForm {
@@ -94,8 +102,23 @@ div{
     gap: .25em;
 }
 
+.listing:hover {
+    transform: scale(1.025);
+}
+
+section {
+    font-weight: bold;
+}
+
 #deleteButton {
     justify-self: center;
-    width: 250px;
+    width: 200px;
     border-radius: 3px;
+    font-weight: bold;
+}
+
+#deleteButton:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
 }
