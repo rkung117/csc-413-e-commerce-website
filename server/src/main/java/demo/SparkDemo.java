@@ -67,7 +67,7 @@ public class SparkDemo {
 
     post("/delete-listing", (req, res) -> {
       String bodyString = res.body();
-      System.out.println("THIS " + bodyString);
+      System.out.println(bodyString);
       MessageDto newListing = gson.fromJson(bodyString, MessageDto.class);
 
       Document doc = myCollection.find(eq("email", newListing.email)).first();
